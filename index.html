@@ -1,6 +1,5 @@
 <button id ="start">Start</button>
 <button id ="stop">Stop</button>
-<video id="output"></video>
 <script>
 let start = document.getElementById('start'),
     stop  = document.getElementById('stop'),
@@ -34,7 +33,6 @@ function createRecorder (stream, mimeType) {
   let recordedChunks = []; 
 
   const mediaRecorder = new MediaRecorder(stream);
-    document.querySelector('#output').srcObject = stream
   mediaRecorder.ondataavailable = function (e) {
     if (e.data.size > 0) {
       recordedChunks.push(e.data);
