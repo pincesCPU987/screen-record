@@ -1,11 +1,33 @@
-<button>Record</button>
+<button id ="start">Start</button>
+<button id ="stop">Stop</button>
 <script>
+let start = document.getElementById('start'),
+    stop  = document.getElementById('stop'),
+    mediaRecorder;
+
+start.addEventListener('click', async function(){
+    let stream = await recordScreen();
+    let mimeType = 'video/webm';
+    mediaRecorder = createRecorder(stream, mimeType);
+  let node = document.createElement("p");
+    node.textContent = "Started recording";
+    document.body.appendChild(node);
+})
+
+stop.addEventListener('click', function(){
+    mediaRecorder.stop();
+    let node = document.createElement("p");
+    node.textContent = "Stopped recording";
+    document.body.appendChild(node);
+})
+
 async function recordScreen() {
     return await navigator.mediaDevices.getDisplayMedia({
         audio: true, 
         video: { mediaSource: "screen"}
     });
 }
+
 function createRecorder (stream, mimeType) {
   // the stream data is stored in this array
   let recordedChunks = []; 
@@ -24,6 +46,7 @@ function createRecorder (stream, mimeType) {
   mediaRecorder.start(200); // For every 200ms the stream data will be stored in a separate chunk.
   return mediaRecorder;
 }
+
 function saveFile(recordedChunks){
 
    const blob = new Blob(recordedChunks, {
@@ -32,19 +55,11 @@ function saveFile(recordedChunks){
     let filename = window.prompt('Enter file name'),
         downloadLink = document.createElement('a');
     downloadLink.href = URL.createObjectURL(blob);
-    downloadLink.download = `＄{filename}.webm`;
+    downloadLink.download = `${filename}.webm`;
 
     document.body.appendChild(downloadLink);
     downloadLink.click();
     URL.revokeObjectURL(blob); // clear from memory
     document.body.removeChild(downloadLink);
 }
-async function record(){
-    let stream = await recordScreen();
-    let mimeType = 'video/webm';
-    let mediaRecorder = createRecorder(stream, mimeType);
-    // After some time stop the recording by 
-    mediaRecorder.stop(); // this will ask for file name and save video
-}
-document.querySelector('button').addEventListener('click',function(e){record();})
 </script>
