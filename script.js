@@ -2,10 +2,14 @@ var video = document.querySelector('.recording');
 var output = document.querySelector('.output');
 var start = document.querySelector('.start-btn');
 var stop = document.querySelector('.stop-btn');
-var anc = document.querySelector(".download-anc")
+var select = document.querySelector('#select');
+var anc = document.querySelector(".download-anc");
 var data = [];
   
 // In order record the screen with system audio
+
+select.addEventListener('click',function(){
+
 var recording = navigator.mediaDevices.getDisplayMedia({
     video: {
         mediaSource: 'screen',
@@ -66,3 +70,4 @@ var recording = navigator.mediaDevices.getDisplayMedia({
             anc.href = url
         };
     });
+});
