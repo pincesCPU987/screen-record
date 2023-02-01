@@ -8,7 +8,7 @@ var data = [];
   
 // In order record the screen with system audio
 
-select.addEventListener('click',function(){
+
 
 var recording = navigator.mediaDevices.getDisplayMedia({
     video: {
@@ -70,4 +70,3 @@ var recording = navigator.mediaDevices.getDisplayMedia({
             anc.href = url
         };
     });
-});
