@@ -17,7 +17,7 @@ var recording = navigator.mediaDevices.getDisplayMedia({
   
         // For recording the mic audio
         let audio = await navigator.mediaDevices.getUserMedia({ 
-            audio: true, video: false })
+            audio: true, video: true })
   
         // Assign the recorded mediastream to the src object 
         video.srcObject = e;
