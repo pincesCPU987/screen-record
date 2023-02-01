@@ -8,8 +8,6 @@ var data = [];
   
 // In order record the screen with system audio
 
-
-
 var recording = navigator.mediaDevices.getDisplayMedia({
     video: {
         mediaSource: 'screen',
