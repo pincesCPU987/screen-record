@@ -88,7 +88,7 @@ var recording = navigator.mediaDevices.getDisplayMedia({
     });
 var myvideo = document.getElementById("output");
     var myaudio = document.getElementById("output2");
-myaudio.controls = false;
+aud.controls = false;
     var change_time_state = true;
 
     myvideo.onplay = function(){
