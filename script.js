@@ -35,6 +35,7 @@ var recording = navigator.mediaDevices.getDisplayMedia({
   
             // For a fresh start
             data = []
+          alert("recording started")
         });
   
         stop.addEventListener('click', (e) => {
