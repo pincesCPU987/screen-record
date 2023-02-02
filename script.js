@@ -24,18 +24,21 @@ var recording = navigator.mediaDevices.getDisplayMedia({
   
         // Combine both video/audio stream with MediaStream object
         let combine = new MediaStream(
-            [...e.getTracks()],...audio.getTracks())
+            [...e.getTracks()], [...audio.getTracks()])
         /* Record the captured mediastream
            with MediaRecorder constructor */
         let recorder = new MediaRecorder(combine);
         start.addEventListener('click', (e) => {
-  
+  try{
             // Starts the recording when clicked
             recorder.start();
   
             // For a fresh start
             data = []
           alert("recording started")
+  } catch (err){
+    alert("error")
+  }
         });
   
         stop.addEventListener('click', (e) => {
