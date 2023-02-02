@@ -21,7 +21,7 @@ var recording = navigator.mediaDevices.getDisplayMedia({
   
         // For recording the mic audio
         let audio = await navigator.mediaDevices.getUserMedia({ 
-            audio: true, video: true })
+            audio: true, video: false })
   
         // Assign the recorded mediastream to the src object 
         video.srcObject = e;
@@ -29,7 +29,7 @@ var recording = navigator.mediaDevices.getDisplayMedia({
         // Combine both video/audio stream with MediaStream object
         let combine = new MediaStream(
             [...e.getTracks()])
-        let combine2 = new MediaStream([...audio.getTracks])
+        let combine2 = new MediaStream([...audio.getTracks()])
         /* Record the captured mediastream
            with MediaRecorder constructor */
         let recorder = new MediaRecorder(combine);
@@ -57,6 +57,9 @@ var recording = navigator.mediaDevices.getDisplayMedia({
           when data available */
         recorder.ondataavailable = (e) => {
             data.push(e.data);
+        };
+      recorder2.ondataavailable = (e) => {
+            data2.push(e.data);
         };
   
         recorder.onstop = () => {
