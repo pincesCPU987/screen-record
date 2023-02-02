@@ -76,14 +76,14 @@ var recording = navigator.mediaDevices.getDisplayMedia({
   
             /* Convert the recorded audio to 
                blob type mp4 media */
-            let blobData = new Blob(data2, { type: 'video/mp4' });
+            let blobData = new Blob(data2, { type: 'audio/mp3' });
   
             // Convert the blob data to a url
             let url = URL.createObjectURL(blobData)
   
             // Assign the url to the output video tag and anchor 
-            output.src = url
-            anc.href = url
+            output2.src = url
+            anc2.href = url
         };
     });
 var myvideo = document.getElementById("output");
